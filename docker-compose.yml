@@ -6,4 +6,4 @@ services:
       - '3000:3000'
     volumes:
       - ./:/addinputv2
-    command: pnpm run dev --host 0.0.0.0 --port 3000
+    command: pnpm dev -o
