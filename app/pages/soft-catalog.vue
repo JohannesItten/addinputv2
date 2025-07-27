@@ -1,9 +1,19 @@
 <script setup>
 import fileTree from '../../public/soft-tree.json'
 const items = ref(fileTree)
+
+let downloadFile = (url, filename) => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
+
 const handleNodeSelect = (node) => {
   if (node.value === undefined) {return;}
-  window.open(node.value);
+  downloadFile(node.value, node.filename);
 };
 </script>
 <template>
