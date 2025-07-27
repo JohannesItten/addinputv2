@@ -12,7 +12,7 @@ let downloadFile = (url, filename) => {
 };
 
 const handleNodeSelect = (node) => {
-  if (node.value === undefined) {return;}
+  if (node === undefined || !Object.hasOwn(node,'value')) {return}
   downloadFile(node.value, node.filename);
 };
 </script>
