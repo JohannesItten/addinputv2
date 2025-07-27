@@ -2,9 +2,12 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', 'nuxt-shiki'],
+  modules: ['@nuxt/ui'],
   shiki: {
     defaultTheme: "github-dark"
   },
-  css: ['~/assets/css/main.css']
+  css: ['~/assets/css/main.css'],
+  ui: {
+    colorMode: 'dark'
+  }
 })

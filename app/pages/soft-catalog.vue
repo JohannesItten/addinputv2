@@ -1,25 +1,18 @@
 <script setup>
-const items = ref([
-    {
-        label: 'composables/',
-        children: [
-          {
-            label: 'useAuth.ts',
-            icon: 'i-vscode-icons-file-type-typescript'
-          },
-          {
-            label: 'useUser.ts',
-            icon: 'i-vscode-icons-file-type-typescript'
-          }
-        ]
-      },
-      ])
+import fileTree from '../../public/soft-tree.json'
+const items = ref(fileTree)
+const handleNodeSelect = (node) => {
+  if (node.value === undefined) {return;}
+  console.log(node.value);
+};
 </script>
 <template>
-    <UCard class="min-w-128 mb-5 mt-5">
+  <UContainer class="max-w-192">
+    <UCard>
         <template #header>
-            Own softpack
+            Softpack for malyutki
         </template>
-        <UTree :items="items"></UTree>
+        <UTree :items="items" @update:model-value="handleNodeSelect"></UTree>
     </UCard>
+  </UContainer>
 </template>

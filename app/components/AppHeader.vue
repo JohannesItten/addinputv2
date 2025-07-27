@@ -4,7 +4,7 @@ import { ref } from 'vue';
 const items = ref([
     {
         label: '/home',
-        icon: 'tdesign:terminal-rectangle-filled',
+        icon: 'line-md:home-simple-filled',
         to: '/',
     },
     {
@@ -26,5 +26,13 @@ const items = ref([
 </script>
 
 <template>
-    <UNavigationMenu :items="items" class="w-full justify-center" />
+    <UContainer class="flex items-center h-16 relative">
+        <!-- <div class="sm:visible flex gap-2 absolute text-xl items-center left-0">
+            <span>$ ls ~/input-stuff</span>
+            <div class="flex animate-pulse bg-emerald-500 w-2 h-5"></div>
+        </div> -->
+        <div class="mx-auto">
+            <UNavigationMenu :items="items" class="grow"/>
+        </div>
+    </UContainer>
 </template>
