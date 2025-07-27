@@ -22,7 +22,7 @@ const getTreeSync = (dir, filelist = []) => {
             filelist.push({
                 label: file,
                 icon: fileIcon,
-                value: dirFile,
+                value: dirFile.slice(dirFile.indexOf('/'))
             });
         }
     }

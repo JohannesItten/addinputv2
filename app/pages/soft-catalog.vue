@@ -3,7 +3,7 @@ import fileTree from '../../public/soft-tree.json'
 const items = ref(fileTree)
 const handleNodeSelect = (node) => {
   if (node.value === undefined) {return;}
-  console.log(node.value);
+  window.open(node.value);
 };
 </script>
 <template>
