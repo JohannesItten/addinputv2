@@ -4,6 +4,4 @@ services:
     container_name: addinputv2-container
     ports:
       - '3000:3000'
-    volumes:
-      - ./:/addinputv2\
     command: node .output/server/index.mjs

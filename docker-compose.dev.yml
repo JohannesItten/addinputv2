@@ -1,11 +1,9 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
+    build: .
     container_name: addinputv2-container
     ports:
       - '3000:3000'
     volumes:
-      - ./:/addinputv2\
+      - ./:/addinputv2
     command: pnpm dev -o
