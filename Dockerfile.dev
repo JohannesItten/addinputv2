@@ -4,5 +4,4 @@ WORKDIR /addinputv2
 COPY package.json ./
 RUN pnpm install
 COPY . .
-RUN pnpm nuxt build
 EXPOSE 3000
