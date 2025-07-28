@@ -1,3 +1,6 @@
+<script setup>
+const layout = 'main-page';
+</script>
 <template>
     <div class="flex-1 flex flex-col justify-center items-center text-center">
         <img src="/img/ava.png" class="h-32 rounded-full mx-auto" />

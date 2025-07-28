@@ -4,4 +4,6 @@ services:
     container_name: addinputv2-container
     ports:
       - '3000:3000'
+    volumes:
+      - ./public/soft-tree.json:/addinputv2/.output/public/soft-tree.json
     command: node .output/server/index.mjs

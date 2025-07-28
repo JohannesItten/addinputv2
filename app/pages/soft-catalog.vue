@@ -1,4 +1,5 @@
 <script setup>
+import { tree } from '#build/ui'
 import fileTree from '../../public/soft-tree.json'
 
 const treeItems = ref(fileTree)
@@ -22,7 +23,10 @@ const handleNodeSelect = (node) => {
 
 const handleSearchInputChange = (event) => {
   let searchVal = searchValue.value.toLowerCase().trim();
-  if (searchVal.length <= 0) {return}
+  if (searchVal.length <= 0) {
+    treeItems.value = srcTreeItems;
+    return;
+  }
   foundItems = [];
   searchItems(searchVal, srcTreeItems);
   treeItems.value = foundItems;
@@ -41,13 +45,17 @@ let searchItems = (searchVal, items) => {
   });
 };
 </script>
+
 <template>
   <UContainer class="max-w-192">
     <UCard>
         <template #header>
           <div class="flex gap-3 align-middle items-center">
             <span>Softpack for malyutki</span>
-            <UInput v-model="searchValue" placeholder="Search..." @change="handleSearchInputChange"/>
+            <UInput v-model="searchValue"
+            placeholder="Press Enter to search"
+            class="min-w-32"
+            @change="handleSearchInputChange"/>
           </div>
         </template>
         <UTree :items="treeItems" @update:model-value="handleNodeSelect"></UTree>

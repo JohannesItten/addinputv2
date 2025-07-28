@@ -19,10 +19,18 @@ const getTreeSync = (dir, filelist = []) => {
             odir.children = getTreeSync(dirFile, dir.files);
             filelist.push(odir);
         } else {
+            // value = truncated absolute path to serve files with nginx,
+            // separately from Nuxt Js web-server
+            //Example:
+            // abs path = /var/www/softpack/
+            // truncator = /var/www
+            // value = /softpack/foo.elf
+            let pathTruncPosition = dirFile.indexOf(pathTrunc);
+            pathTruncPosition = pathTruncPosition >=0 ? pathTruncPosition : 0;
             filelist.push({
                 label: file,
                 icon: fileIcon,
-                value: dirFile.slice(dirFile.indexOf('/')),
+                value: dirFile.slice(pathTruncPosition),
                 filename: path.basename(dirFile)
             });
         }
@@ -32,10 +40,19 @@ const getTreeSync = (dir, filelist = []) => {
 
 let root = argv[2];
 let resultFilePath = argv[3];
-if (root === undefined || resultFilePath === undefined) {
-    console.log('Correct usage: node get-file-tree.cjs {DIR} {JSON_FILE_PATH}');
+let pathTrunc = argv[4];
+
+if (root === undefined || 
+    resultFilePath === undefined ||
+    pathTrunc === undefined) {
+    console.log('Correct usage: node get-file-tree.cjs {DIR} {JSON_FILE_PATH} {PATH_TRUNCATOR}');
     return;
 }
+
+if (pathTrunc.endsWith('/')) {
+    pathTrunc = pathTrunc.slice(0, -1);
+}
+
 if (!fs.existsSync(root)) {
     console.log('Given directory is not exist: ' + root);
     return;
